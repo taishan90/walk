@@ -1,0 +1,100 @@
+#coding=utf-8
+   
+ 地址端口 WebSocket(url: NSURL(scheme: "ws", host: "172.20.10.3:8001", path: "/") )
+  
+  输入包前面加3位字符WAL＋输入包，用来表示业务操作，区分以后的聊天
+  输入输出增加tag， "tag":int整形，输入多少返回多少
+  "code":100 成功100
+  
+   一用户类接口
+   用户数据结构
+    var user_str ＝｛
+            "username":"15615311315",
+            "password":"1234",
+            "userid":0
+           ｝
+     1.创建用户
+      输入：
+        ｛
+            "dml":"insert",
+            
+            "woobject":"users",
+            "dataset":user_str,（参见用户数据结构）
+           ｝
+      
+      
+      
+      输出：
+              {"code":100,msg:"成功" ：}
+		 
+		 
+	 创建成功后需要调用用户登录才能进行操作
+		 
+		 
+ 2.用户登录
+      输入：  
+            ｛
+            "dml":"select",
+            "woobject":"users",
+            "dataset":user_str,（参见用户数据结构）
+            "tag":101｝
+      输出：
+       
+              {"code":100 ,
+              "dataset":{
+              			userid":1 (整形用户id)
+              			}
+              	msg:"成功"，
+              	tag}
+     3.密码修改
+     4.修改手机号码
+         
+        
+ 二.客户资料       
+ 结构
+ 
+     user_str=｛
+            "nicheng": "wolfzk" ,
+            "xingbie": 1,//1男0女
+            "nianling":"19790309" ,
+            "gexingqianming":"我的个性签名我是狼",
+            "shengao":165,
+            "tizhong":78.5,
+            "userid":1
+        ｝
+   1.客户资料查询：
+    输入：  
+               ｛
+            "cmd": "dml" ,
+            "dml":"select",
+            "woobject":"custinfo",
+            "userid":登录返回的userid
+        ｝
+
+   输出
+                       {
+                      "code":100 成功100,
+                      "dataset":user_str,
+                      msg:"成功"，
+                       
+                      }
+        
+      
+       
+        
+    2.   客户资料 更新：
+         输入：  
+              ｛
+            "cmd": "dml" ,
+            "dml":"insert",
+            "woobject":"custinfo",
+            "dataset":user_str
+        ｝
+        输出
+          {
+                      "code":100,
+                       msg:"成功"，
+                       
+                      }
+                      
+        
